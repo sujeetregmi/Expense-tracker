@@ -19,7 +19,11 @@ const schema = z.object({
 
 type ExpenseFormData = z.infer<typeof schema>;
 
-const ExpenseForm = () => {
+interface Props{
+  onSubmit() : (data:ExpenseFormData) =>void
+}
+
+const ExpenseForm = ({onSubmit}:Props) => {
   const {
     register,
     handleSubmit,
@@ -30,7 +34,7 @@ const ExpenseForm = () => {
     <form
       action=""
       className="mb-5"
-      onSubmit={handleSubmit((data) => console.log(data))}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <div className="mb-3">
         <label htmlFor="description" className="form-label fw-bold">
