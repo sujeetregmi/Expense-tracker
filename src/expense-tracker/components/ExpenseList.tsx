@@ -9,11 +9,13 @@ interface Props {
   onDelete: (id: number) => void;
 }
 const ExpenseList = ({ expenses, onDelete }: Props) => {
+  if (expenses.length == 0)
+    return <h1 className="fw-bold h2">No records Found.</h1>;
   return (
     <>
       <table className="table table-bordered">
         <thead>
-          <tr>
+          <tr className="fw-bold">
             <td>Description</td>
             <td>Amount</td>
             <td>Category</td>
@@ -39,7 +41,7 @@ const ExpenseList = ({ expenses, onDelete }: Props) => {
           ))}
         </tbody>
         <tfoot>
-          <tr>
+          <tr className="fw-bold">
             <td>Total</td>
             <td>
               $
